@@ -7,19 +7,13 @@ const EXPOSE_PORT = 3000;
 
 var app = express();
 
-app.use(express.static(PUBLIC_PATH));
-
 // Routers
 var gobangRouter = require("./routes/gobang");
-
+var resumeRouter = require("./routes/resume");
+var blogRouter = require("./routes/blog");
 app.use("/gobang", gobangRouter);
-
-// handle refresh.
-app.use((req, res) => {
-  res.sendFile("index.html", {
-    root: PUBLIC_PATH
-  });
-});
+app.use("/resume", resumeRouter);
+app.use("/blog", blogRouter);
 
 // server
 var server = http.createServer(app);
